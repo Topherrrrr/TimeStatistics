@@ -12,11 +12,13 @@ class activity(object):
         self.counter=counter
         self.focus=focus
         self.fullString=f"{focus}::{counter}"
+        self.currentTimeSpent=0
 
     def changeTime(self):
             #Put the time spent into an array, and extract the total seconds from that array
             splitTime=self.counter.split(":")
             fullTime=(int(splitTime[0])*3600)+(int(splitTime[1])*60)+int(splitTime[2])
+            self.currentTimeSpent=fullTime
 
             #Add one second to the total time, then calculate the hours, minutes, and seconds
             fullTime=fullTime+1
@@ -77,8 +79,9 @@ mainLoop.start()
 
 #While the program is running
 while True:
-    #Get the window the user is focusing on
-    currentWindow=str(f"{win32gui.GetWindowText(win32gui.GetForegroundWindow())}")
+    #Get the window the user is focusing on and remove special characters
+    currentWindow=str(f"{win32gui.GetWindowText(win32gui.GetForegroundWindow())}").encode("ascii","ignore")
+    currentWindow=currentWindow.decode("utf-8")
 
     #Using the file from today, read each line. If it's not in current activities, add it and create a new entry
     with open(f"{dateString}.txt", 'r') as readList:
@@ -114,12 +117,10 @@ while True:
 
             #And use that index to increase the amount of time spent on it by 1 second
             activities[f].changeTime()
-
         #Then write all the activities back
         with open(f"{dateString}.txt",'w') as writeList:
             for i in activities:
                 writeList.write(f"{i.fullString}\n")
-
 
 
     timer=timer+1
