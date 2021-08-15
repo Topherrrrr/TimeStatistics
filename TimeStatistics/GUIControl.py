@@ -39,65 +39,6 @@ graphDisplay=[]
 
 dateString=date.today()
 
-
-
-#Displaying a pie chart from the SQL data
-# def displayPieChart():
-#     for i in graphDisplay:
-#         i.get_tk_widget().destroy()
-#         graphDisplay.remove(i)
-#     #Fetching SQL data, all entries from today
-#     activityList=GlobalStuff.fetchData()
-#
-#    # print(f"ActivityList: {activityList}")
-#     #An array of activity names pulled from the SQL query
-#     activityName=[item[1] for item in activityList]
-#    # print(f"ActivityNames: {activityName}")
-#     #The amount of time spent on each activity
-#     activityTime=[stuff[2] for stuff in activityList]
-#
-#     #Making a graph
-#     fig=plt.figure(figsize=(6,6), dpi=100)
-#     fig.set_size_inches(6,4)
-#     #Specifiying that it's a pie graph
-#     plt.pie(activityTime,labels=activityName, autopct='%1.1f%%',shadow=True, startangle=140)
-#     plt.axis('equal')
-#
-#     #Adding the graph to the tkinter widget
-#     canvasBar=FigureCanvasTkAgg(fig,master=root)
-#     canvasBar.draw()
-#     canvasBar.get_tk_widget().place(x=120,y=40)
-#
-#     #Adding the widget to the display, to be removed if the menu changes
-#     graphDisplay.append(canvasBar)
-
-#Runs when the "Graphs" button is clicked
-# def displayGraphMenu():
-#
-#     #Get rid of any data in the raw data tab
-#     for i in rawMenuButtons:
-#         i.destroy()
-#
-#     #Makes a button that displays a pie graph when clicked
-#     pieButton=tk.Button(root, height=2, width=15, text="Pie Chart", command=lambda:displayPieChart())
-#     pieButton.place(x=0,y=45)
-#     graphMenuButtons.append(pieButton)
-#
-#     #Makes a button that displays a line graph when clicked
-#     lineButton=tk.Button(root, height=2, width=15, text="Line Chart")
-#     lineButton.place(x=0, y=90)
-#     graphMenuButtons.append(lineButton)
-#
-#
-#     # f = Figure(figsize=(5,5), dpi=100)
-#     # a = f.add_subplot(111)
-#     # a.plot([1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,10])
-#     #
-#     # canvas = FigureCanvasTkAgg(f,master=root)
-#     # canvas.draw()
-#     # canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
-
-
 #Displays when the "Raw data" button is clicked
 def displayRawMenu():
 
@@ -125,41 +66,54 @@ def displayRawMenu():
     rawLabel.place(x=0,y=45)
     rawMenuButtons.append(rawLabel)
 
+#What runs when you click export data
 def exportData():
+
+    #Closing the popup window when "Ok" is clicked
     def leavemini():
         popup.destroy()
         print("Destroyed")
 
+    #Opens the csv file
     def openPath():
         p=subprocess.Popen(f"{dateString}.csv", shell=True)
 
+    #Title for each column
     headers=['Date','Activity','Time spent in seconds']
+
+    #Making the file name the date + .csv
     fileName=f"{str(dateString)}.csv"
+
+    #Writing to the csv file
     with open(fileName, "w+",newline='') as writeList:
         writer=csv.writer(writeList)
         writer.writerow(headers)
         for i in GlobalStuff.fetchData():
             writer.writerow(i)
 
+    #Code for the popup window once the file is created and has data
     popup=tk.Tk()
     popup.wm_title("File Created")
     label=tk.Label(popup, text="CSV created")
     label.pack(side="top",fill="x", pady=10)
+
+
     exitPopup=tk.Button(popup, text="Okay", command=leavemini)
     exitPopup.pack()
     openFile=tk.Button(popup,text="Open CSV",command=openPath)
     openFile.pack()
+
     popup.mainloop()
 
 #The starter menu, which displays the button for graph menus and the raw data
 tabHeight=2
 tabWidth=15
-# graphTab=tk.Button(root, height=tabHeight, width=tabWidth, text="Graphs", command=lambda:displayGraphMenu())
-# graphTab.place(x=0,y=0)
 
+#Exporting the data to a csv file
 exportToCSV=tk.Button(root, height=tabHeight, width=tabWidth, text="Export to csv", command=lambda:exportData())
 exportToCSV.place(x=115,y=0)
 
+#Adding raw data to the field
 rawDataTab=tk.Button(root, height=tabHeight, width=tabWidth, text="Raw Data", command=lambda:displayRawMenu())
 rawDataTab.place(x=0,y=0)
 
