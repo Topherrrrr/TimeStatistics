@@ -12,8 +12,6 @@ import pathlib
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 import GlobalStuff
-
-
 matplotlib.use("TkAgg")
 root = tk.Tk()
 
