@@ -1,16 +1,20 @@
 from tkinter import *
 import tkinter as tk
 import sqlite3
-import win32gui
+import win32
 from datetime import date
 import matplotlib.pyplot as plt
 import matplotlib
 import csv
 import subprocess
 import pathlib
+import sys
+import os
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
 import GlobalStuff
 matplotlib.use("TkAgg")
 root = tk.Tk()
