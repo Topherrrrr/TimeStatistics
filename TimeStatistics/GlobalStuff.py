@@ -1,7 +1,10 @@
 import sqlite3
 from datetime import date
+import os
+import sys
 import win32gui
-
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
 startWindow=str(f"{win32gui.GetWindowText(win32gui.GetForegroundWindow())}").encode("ascii","ignore")
 dudWindow=startWindow.decode("utf-8")
 
