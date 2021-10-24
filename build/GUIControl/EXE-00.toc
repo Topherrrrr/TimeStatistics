@@ -63,7 +63,7 @@
  [],
  False,
  False,
- 1635111736,
+ 1635113370,
  [('runw.exe',
    'c:\\users\\pyjak\\documents\\github\\timestatistics\\venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])

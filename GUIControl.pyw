@@ -2,13 +2,20 @@ from tkinter import *
 from tkcalendar import Calendar
 import tkinter as tk
 import sqlite3
+import win32
 from datetime import date
 import csv
 import subprocess
+import pathlib
+import time
 import sys
+import copy
 import os
-
-
+import threading
+import babel.numbers
+import pathlib
+dbDir=f"{pathlib.Path().resolve()}\dist\Starter\ActivityList.db"
+print(f"DBDIR: {dbDir}")
 file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 import GlobalStuff
