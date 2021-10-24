@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TimeStatistics.iml" filepath="$PROJECT_DIR$/TimeStatistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TimeStatistics.iml" filepath="$PROJECT_DIR$/.idea/TimeStatistics.iml" />
     </modules>
   </component>
 </project>

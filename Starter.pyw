@@ -41,10 +41,11 @@ while True:
     currentWindow=currentWindow.decode("utf-8")
 
     #Get all activities from today
-    todaysActivities=GlobalStuff.fetchData(0)
+    todaysActivities=GlobalStuff.fetchData()
+    print(f"Today's Activities: {todaysActivities}")
     #Get the second item in each entry (AKA the name of the activity)
     activities=[item[1] for item in todaysActivities]
-
+    print(f"Current Window: {currentWindow} Activities: {activities}")
     #If the current window isn't already in the table...
     if currentWindow not in activities:
         #Create a new entry

@@ -16,7 +16,7 @@ c=connection.cursor()
 #Fetching total data, datePoint is used to pick the starting date we want to pull data from
 #DaysBack is how many days ago we want to pull data from. For example, 7 will pull all data from the last 7 days
 
-def fetchData(date1, date2, daysBack=0):
+def fetchData(date1=None, date2=None, daysBack=0):
     #Get today's date, to be used when fetching data from the tables
     todaysActivities=[]
     if daysBack=="All":
@@ -25,11 +25,13 @@ def fetchData(date1, date2, daysBack=0):
     elif date1 and date2:
         c.execute(f"SELECT * FROM ActivityTable WHERE date >= :date1 AND date <= :date2",{'date1':date1,'date2':date2})
         todaysActivities=c.fetchall()
+        print("Date1 / 2")
     else:
         try:
             today=DT.date.today()
             pullDate=today-DT.timedelta(daysBack)
             c.execute(f"SELECT * FROM ActivityTable WHERE date >= :date",{'date':pullDate})
+            print(f"PullDate: {pullDate}")
             todaysActivities=c.fetchall()
         except:
             pass
