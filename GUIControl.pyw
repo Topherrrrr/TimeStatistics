@@ -14,8 +14,6 @@ import os
 import threading
 import babel.numbers
 import pathlib
-dbDir=f"{pathlib.Path().resolve()}\dist\Starter\ActivityList.db"
-print(f"DBDIR: {dbDir}")
 file_dir = os.path.dirname(__file__)
 sys.path.append(file_dir)
 import GlobalStuff
