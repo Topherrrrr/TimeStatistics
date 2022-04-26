@@ -1,0 +1,8 @@
+This program is used to monitor the programs you've been using on your PC. It then exports it into an excel sheet you can use to perform functions on. It helps you set
+goals. Say for example, you want to spend more time on studying. You can see your progress over time. To use, you type "Run" into the start menu and put "Shell:startup"
+in the prompt. It will open up a folder, and in that folder put a shortcut to starter.exe. After that, run starter.exe. This will start the tracking on your PC. Once you
+decide you want a recap of the data, open GUIControl.exe. From there, you can select date ranges and export them to a CSV for your analysis. To stop the tracking, look
+for starter.exe in command prompt and end the task
+
+GlobalStuff is the script that runs the SQL scripts for adding and updating records in a database. GUIControl is the script that controls and creates the GUI, and
+Starter is the script that runs in the background to collect the windows you're using.
