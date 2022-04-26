@@ -138,31 +138,33 @@ def exportData():
 #The starter menu, which displays the button for graph menus and the raw data
 tabHeight=2
 tabWidth=15
-# graphTab=tk.Button(root, height=tabHeight, width=tabWidth, text="Graphs", command=lambda:displayGraphMenu())
-# graphTab.place(x=0,y=0)
+
 
 def CheckDropdown(event):
 
     if dayList.get()=="Range":
         startDate.place(x=0,y=100)
         endDate.place(x=300,y=100)
-    #
+    
     else:
         print("forgetting")
         startDate.place_forget()
         endDate.place_forget()
 
+#Setting the characteristics of the dropdown used to select the date range
 dayList=StringVar(root)
 dayList.set("Today")
 dayOptions=['Today','Last 7 days','Last 30 days','All','Range']
 dayInput=tk.OptionMenu(root, dayList,*dayOptions,command=CheckDropdown)
 dayInput.place(x=115,y=0)
 
+#Setting the characteristics of the button used to export the data from SQL to a CSV
 dateRange=dayList.get()
 print(f"DateRange: {dateRange}")
 exportToCSV=tk.Button(root, height=tabHeight, width=tabWidth, text="Export to csv", command=lambda:exportData())
 exportToCSV.place(x=0,y=0)
 endDate=Calendar(root, selectmode='day',year=date.today().year, month=date.today().month, day=date.today().day)
+
 
 startDate=Calendar(root, selectmode='day',year=date.today().year, month=date.today().month, day=date.today().day)
 endDate=Calendar(root, selectmode='day',year=date.today().year, month=date.today().month, day=date.today().day)
