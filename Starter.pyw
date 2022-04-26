@@ -10,11 +10,11 @@ import sqlite3
 
 
 
-
+#Gets the current starting window
 startWindow=str(f"{win32gui.GetWindowText(win32gui.GetForegroundWindow())}").encode("ascii","ignore")
 dudWindow=startWindow.decode("utf-8")
 
-
+#Connects to the DB
 connection=sqlite3.connect('ActivityList.db')
 c=connection.cursor()
 GlobalStuff.startSQL()
@@ -43,9 +43,11 @@ while True:
     #Get all activities from today
     todaysActivities=GlobalStuff.fetchData()
     print(f"Today's Activities: {todaysActivities}")
+    
     #Get the second item in each entry (AKA the name of the activity)
     activities=[item[1] for item in todaysActivities]
     print(f"Current Window: {currentWindow} Activities: {activities}")
+    
     #If the current window isn't already in the table...
     if currentWindow not in activities:
         #Create a new entry
